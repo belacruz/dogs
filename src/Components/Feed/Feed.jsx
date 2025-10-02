@@ -52,7 +52,11 @@ const Feed = ({ home, username }) => {
       {modalPhoto && (
         <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
       )}
-      <FeedPhotos setModalPhoto={setModalPhoto} home={home} />
+      <FeedPhotos
+        setModalPhoto={setModalPhoto}
+        home={home}
+        username={username}
+      />
       <div
         id="page-bottom-boundary"
         ref={bottomBoundaryRef}

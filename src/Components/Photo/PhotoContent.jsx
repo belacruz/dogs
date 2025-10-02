@@ -6,9 +6,9 @@ import { UserContext } from '../../UserContext';
 import PhotoDelete from './PhotoDelete';
 import Image from '../Helper/Image';
 
-const PhotoContent = ({ data, single }) => {
+const PhotoContent = ({ data, single, setModalPhoto }) => {
   const { photo, comments } = data;
-  console.log(photo, );
+
   const user = React.useContext(UserContext);
 
   return (
@@ -22,7 +22,11 @@ const PhotoContent = ({ data, single }) => {
             {user?.data && user.data.username === photo.author ? (
               <PhotoDelete id={photo.id} />
             ) : (
-              <Link to={`/perfil/${photo.author}`} className={styles.author}>
+              <Link
+                to={`/perfil/${photo.author}`}
+                className={styles.author}
+                onClick={() => setModalPhoto(null)}
+              >
                 @{photo.author}
               </Link>
             )}

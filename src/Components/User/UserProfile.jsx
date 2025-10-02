@@ -1,10 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Feed from '../Feed/Feed';
+import Feed from '../Feed/Feed.jsx';
 
 const UserProfile = () => {
   const { username } = useParams();
-  console.log(username);
 
   return (
     <section className="container mainSection">

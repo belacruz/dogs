@@ -1,0 +1,25 @@
+.delete {
+  background-color: #fb1;
+  color: #333;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.875rem;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  min-width: 70px;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0.5;
+}
+
+.delete:hover,
+.delete:focus {
+  opacity: 1;
+  background-color: #333;
+  color: #fb1;
+  border-color: #fb1;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

@@ -99,6 +99,7 @@ export const UserStorage = ({ children }) => {
               return request(url, options);
             }),
           );
+          console.log(results);
           let responseOk = results.some((r) => r.response.ok);
           let jsonLength = results.some((r) => r.json.length < 3);
           if (responseOk && jsonLength) setInfinite(false);

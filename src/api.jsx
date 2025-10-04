@@ -38,6 +38,7 @@ export function USER_GET(token) {
     },
   };
 }
+
 export function USER_POST(body) {
   return {
     url: API_URL + '/api/user',

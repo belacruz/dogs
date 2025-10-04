@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './Components/Home';
 import Login from './Components/Login/Login';
 import { UserStorage } from './UserContext';
@@ -11,10 +11,24 @@ import User from './Components/User/User';
 import Photo from './Components/Photo/Photo';
 import UserProfile from './Components/User/UserProfile';
 
+function RedirectHandler() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirect = new URLSearchParams(window.location.search).get('redirect');
+    if (redirect) {
+      navigate(redirect, { replace: true });
+    }
+  }, [navigate]);
+
+  return null;
+}
+
 const App = () => {
   return (
     <div>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <RedirectHandler />
         <UserStorage>
           <Header />
           <Routes>

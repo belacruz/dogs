@@ -15,7 +15,9 @@ function RedirectHandler() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const redirect = new URLSearchParams(window.location.search).get('redirect');
+    const redirect = new URLSearchParams(window.location.search).get(
+      'redirect',
+    );
     if (redirect) {
       navigate(redirect, { replace: true });
     }
@@ -27,27 +29,25 @@ function RedirectHandler() {
 const App = () => {
   return (
     <div>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <RedirectHandler />
-        <UserStorage>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
-            <Route
-              path="/conta/*"
-              element={
-                <ProtectedRoute>
-                  <User />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="foto/:id" element={<Photo />} />
-            <Route path="perfil/:username" element={<UserProfile />} />
-          </Routes>
-          <Footer />
-        </UserStorage>
-      </BrowserRouter>
+      <RedirectHandler />
+      <UserStorage>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login/*" element={<Login />} />
+          <Route
+            path="/conta/*"
+            element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="foto/:id" element={<Photo />} />
+          <Route path="perfil/:username" element={<UserProfile />} />
+        </Routes>
+        <Footer />
+      </UserStorage>
     </div>
   );
 };

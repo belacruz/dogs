@@ -14,7 +14,7 @@ import UserProfile from './Components/User/UserProfile';
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <UserStorage>
           <Header />
           <Routes>

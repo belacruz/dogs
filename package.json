@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
     "lint": "eslint .",
+    "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://belacruz.github.io/dogs/",
   "dependencies": {
     "prop-types": "^15.8.1",
     "react": "^19.1.1",

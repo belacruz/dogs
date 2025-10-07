@@ -87,7 +87,9 @@ export const UserStorage = ({ children }) => {
       const total = 6;
 
       try {
+        setError(null);
         setPhotos([]);
+
         if (pages?.length) {
           results = await Promise.all(
             pages.map((p) => {
@@ -99,12 +101,24 @@ export const UserStorage = ({ children }) => {
               return request(url, options);
             }),
           );
+
+          // ONLY validation: if photos exist but author doesn't match, user is invalid
+          if (username && results[0]?.json?.length > 0) {
+            const firstPhoto = results[0].json[0];
+            if (firstPhoto.author !== username) {
+              throw new Error('User not found');
+            }
+          }
+
+          // REMOVED: empty array check (users with no photos are valid)
+
           let responseOk = results.some((r) => r.response.ok);
           let jsonLength = results.some((r) => r.json.length < 3);
           if (responseOk && jsonLength) setInfinite(false);
 
           merged = results.flatMap((r) => r.json);
         }
+
         if (merged?.length) {
           setPhotos((prev) => {
             const existingIds = new Set(prev.map((x) => x.id));
@@ -113,10 +127,11 @@ export const UserStorage = ({ children }) => {
           });
         }
       } catch (err) {
-        console.log(err);
+        console.error('UserContext error:', err.message);
+        setError(err.message);
       }
     },
-    [pages, data?.id, request, setPhotos],
+    [pages, data?.id, request],
   );
 
   return (

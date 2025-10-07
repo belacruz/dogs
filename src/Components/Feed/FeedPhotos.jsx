@@ -15,7 +15,7 @@ const FeedPhotos = ({ setModalPhoto, home, username = null }) => {
     }
   }, [fetchPhotos, data?.id, home, username]);
 
-  if (error) return <Error error={errorPhotos} />;
+  if (error) return <Error error={error} />;
   if (loading) return <Loading />;
   if (photos)
     return (

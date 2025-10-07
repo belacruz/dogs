@@ -13,23 +13,25 @@ import UserProfile from './Components/User/UserProfile';
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <UserStorage>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login/*" element={<Login />} />
-          <Route
-            path="/conta/*"
-            element={
-              <ProtectedRoute>
-                <User />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="foto/:id" element={<Photo />} />
-          <Route path="perfil/:username" element={<UserProfile />} />
-        </Routes>
+        <main className='AppBody'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login/*" element={<Login />} />
+            <Route
+              path="/conta/*"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="foto/:id" element={<Photo />} />
+            <Route path="perfil/:username" element={<UserProfile />} />
+          </Routes>
+        </main>
         <Footer />
       </UserStorage>
     </div>

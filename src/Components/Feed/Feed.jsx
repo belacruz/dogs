@@ -2,6 +2,7 @@ import React from 'react';
 import FeedModal from './FeedModal';
 import FeedPhotos from './FeedPhotos';
 import { UserContext } from '../../UserContext';
+import Head from '../Helper/Head';
 
 const Feed = ({ home, username }) => {
   const { modalPhoto, setModalPhoto, setPages, infinite } =
@@ -10,6 +11,12 @@ const Feed = ({ home, username }) => {
   const bottomBoundaryRef = React.useRef(null);
   const loadingRef = React.useRef(false);
   const observerRef = React.useRef(null);
+
+  const getTitle = () => {
+    if (username) return username;
+    if (home) return 'Feed';
+    return 'Minha Conta';
+  };
 
   React.useEffect(() => {
     if (!infinite) return;
@@ -49,6 +56,7 @@ const Feed = ({ home, username }) => {
 
   return (
     <div>
+      <Head title={getTitle()} />
       {modalPhoto && (
         <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
       )}
